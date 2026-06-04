@@ -32,10 +32,9 @@ The goal is to simulate how a SOC analyst would:
 Click below to jump directly into each investigation:
 
 - 🧩 [Detecting Reverse/Bind shells in Splunk](./investigations/suspicious_powershell_activity)
-
-- 🌐 [Suspicious DNS Activity]
 - 📁 [Investigating a suspected intrusion by an APT group](https://github.com/UVSasa/Splunk-Investigations/blob/main/Volt_Typhoon_Investigation)
-- 🧠 [Process Injection Attempt]
-- 🔁 [Lateral Movement Attempt]
+- 🌐 [More Labs Coming Soon]
+- 🧠 [More Labs Coming Soon]
+- 🔁 [More Labs Coming Soon]
 
 
