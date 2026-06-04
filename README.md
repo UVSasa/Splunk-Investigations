@@ -34,7 +34,7 @@ Click below to jump directly into each investigation:
 - 🧩 [Detecting Reverse/Bind shells in Splunk](./investigations/suspicious_powershell_activity)
 
 - 🌐 [Suspicious DNS Activity]
-- 📁 [Malicious File Drop & Execution]
+- 📁 [Investigating a suspected intrusion by an APT group]
 - 🧠 [Process Injection Attempt]
 - 🔁 [Lateral Movement Attempt]
 
