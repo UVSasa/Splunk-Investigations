@@ -69,7 +69,19 @@ Questions asked:
 1. Comb through the ADSelfService Plus logs to begin retracing the attacker’s steps. At what time (ISO 8601 format) was Dean's password changed and their account taken over by the attacker?
 2. Shortly after Dean's account was compromised, the attacker created a new administrator account. What is the name of the new account that was created?
 
-### Example SPL Queries
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Walkthrough
+1) For this one I simply drilled down into the correct sourcelog mentioned in the question (ADSS), then since I know we're looking for a changed password, I filtered into the action_name field by "password change". Finally since were looking for when Dean's password was changed, I looked into the user name field and came up with 2 events.
+
+<img width="1902" height="702" alt="FindingT1" src="https://github.com/user-attachments/assets/f9e199a8-4dde-4695-b8b2-0bbad5e88eaa" />
+<img width="952" height="346" alt="FindingT2" src="https://github.com/user-attachments/assets/141ef1b5-6435-4b88-867a-3535747f4013" />
+<img width="950" height="138" alt="FindingT4" src="https://github.com/user-attachments/assets/7c628922-8a01-4d7c-948a-aac10b479365" />
+
+
+
+
+
+
 
 ```spl
 index=* suspicious
