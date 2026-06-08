@@ -28,12 +28,16 @@ This project simulates a Security Operations Center (SOC) investigation into act
 
 Volt Typhoon is a state-sponsored threat actor known for targeting critical infrastructure and maintaining long-term access through stealthy "living-off-the-land" techniques. The group frequently leverages legitimate administrative tools and native operating system functionality to evade detection.
 
+<img width="959" height="439" alt="VoltTyphoonSum" src="https://github.com/user-attachments/assets/650da48f-cdcf-4352-af56-ea3f89fd99cf" />
+
+
+
 ### Common TTPs
 
 | Tactic            | Examples                               |
 | ----------------- | -------------------------------------- |
 | Initial Access    | Exploitation of public-facing services |
-| Persistence       | Scheduled Tasks, Services              |
+| Persistence       | Scheduled Tasks, Services              |                            
 | Discovery         | System and Network Enumeration         |
 | Credential Access | Credential Dumping                     |
 | Lateral Movement  | Remote Services                        |
@@ -56,14 +60,14 @@ Volt Typhoon is a state-sponsored threat actor known for targeting critical infr
 
 # Investigation Methodology
 
-## Phase 1: Initial Triage
+## Task 2: Initial Access
+
+Volt Typhoon often gains initial access to target networks by exploiting vulnerabilities in enterprise software. In recent incidents, Volt Typhoon has been observed leveraging vulnerabilities in Zoho ManageEngine ADSelfService Plus, a popular self-service password management solution used by organizations.
 
 Questions asked:
 
-1. What alerted the SOC?
-2. Which host was affected?
-3. Which user accounts were involved?
-4. What suspicious IP addresses appeared?
+1. Comb through the ADSelfService Plus logs to begin retracing the attacker’s steps. At what time (ISO 8601 format) was Dean's password changed and their account taken over by the attacker?
+2. Shortly after Dean's account was compromised, the attacker created a new administrator account. What is the name of the new account that was created?
 
 ### Example SPL Queries
 
@@ -81,7 +85,7 @@ index=* EventCode=4624
 
 ---
 
-## Phase 2: Initial Access
+## Phase 3: Execution
 
 ### Evidence
 
@@ -109,7 +113,7 @@ Include screenshots of:
 
 ---
 
-## Phase 3: Discovery Activity
+## Task 4: Persistence
 
 ### Commands Observed
 
@@ -133,7 +137,7 @@ Document how the attacker enumerated the environment.
 
 ---
 
-## Phase 4: Persistence
+## Task 5: Defense Evasion
 
 ### Evidence
 
@@ -156,7 +160,7 @@ Document persistence artifacts discovered.
 
 ---
 
-## Phase 5: Privilege Escalation
+## Task 6: Credential Access
 
 ### Evidence
 
@@ -175,7 +179,7 @@ Identify activity indicating elevated privileges.
 
 ---
 
-## Phase 6: Lateral Movement
+## Task 7: Discovery & Lateral Movement
 
 ### Evidence
 
@@ -194,7 +198,7 @@ Investigate movement between hosts.
 
 ---
 
-## Phase 7: Command and Control
+## Task 8: Collection
 
 ### Evidence
 
