@@ -78,19 +78,6 @@ Questions asked:
 <img width="950" height="138" alt="FindingT4" src="https://github.com/user-attachments/assets/7c628922-8a01-4d7c-948a-aac10b479365" />
 
 
-
-
-
-
-
-```spl
-index=* suspicious
-```
-
-```spl
-index=* EventCode=4624
-```
-
 ### Findings
 
 * Document notable observations here.
