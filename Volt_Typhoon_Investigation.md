@@ -64,12 +64,12 @@ Volt Typhoon is a state-sponsored threat actor known for targeting critical infr
 
 Volt Typhoon often gains initial access to target networks by exploiting vulnerabilities in enterprise software. In recent incidents, Volt Typhoon has been observed leveraging vulnerabilities in Zoho ManageEngine ADSelfService Plus, a popular self-service password management solution used by organizations.
 
-Questions asked:
+### Questions asked:
 
 1. Comb through the ADSelfService Plus logs to begin retracing the attacker’s steps. At what time (ISO 8601 format) was Dean's password changed and their account taken over by the attacker?
 2. Shortly after Dean's account was compromised, the attacker created a new administrator account. What is the name of the new account that was created?
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### Walkthrough
 1) For this one I simply drilled down into the correct sourcelog mentioned in the question (ADSS), then since I know we're looking for a changed password, I filtered into the action_name field by "password change". Finally since were looking for when Dean's password was changed, I looked into the username field and came up with 2 events. I just looked at the one that said the password change was completed successfully. Ans: 2024-03-24T11:10:22
 
@@ -78,7 +78,7 @@ Questions asked:
 <img width="950" height="138" alt="FindingT4" src="https://github.com/user-attachments/assets/7c628922-8a01-4d7c-948a-aac10b479365" />
 <img width="958" height="359" alt="FindingT5" src="https://github.com/user-attachments/assets/8259631c-b12d-4618-b022-6536c8df2575" />
 
-----
+---
 
 2) For this one, the question asks us to find the new account created and we know it was created after the dean-admin account password was changed, so I used that time to filter for all events after that time again in the adss logs. Afterwards we filer into field actionname= "enrollment" and came up with 1 event. Ans: voltyp-admin
 
@@ -104,11 +104,11 @@ Volt Typhoon is known to exploit Windows Management Instrumentation Command-line
 <img width="955" height="445" alt="WMIC" src="https://github.com/user-attachments/assets/7ff65160-9de2-4fe1-bbda-9bede356cada" />
 
 
-Questions asked:
+### Questions asked:
 
 1. In an information gathering attempt, what command does the attacker run to find information about local drives on server01 & server02?
 2. The attacker uses ntdsutil to create a copy of the AD database. After moving the file to a web server, the attacker compresses the database. What password does the attacker set on the archive?
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### Walkthrough
 1) For this one the question told us we were looking for a command run to gather info about server01 & server02 so I used the keyword server01 in the search to see what I'd fine and 11 events were returned. Then I simply filtered into the events from the WMIC logs which only had 1 event. Ans: wmic /node:server01, server02 logicaldisk get caption, filesystem, freespace, size, volumename
 
@@ -138,39 +138,40 @@ Questions asked:
 
 ## Task 4: Persistence
 
-### Commands Observed
+Our target APT frequently employs web shells as a persistence mechanism to maintain a foothold. They disguise these web shells as legitimate files, enabling remote control over the server and allowing them to execute commands undetected.
 
-```cmd
-whoami
-hostname
-ipconfig
-net user
-net group
-```
+### Questions asked:
+
+1. To establish persistence on the compromised server, the attacker created a web shell using base64 encoded text. In which directory was the web shell placed?
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Walkthrough
+1) For this one the question essentially told us that web shells were placed in the environment, but we don't know where so I decided to check the mitre attack page since the over arching theme of this ctf is the threat actor Volt Typhoon. I just went to their page on Mitre and search for webshell as a keyword to see if anything was documented about them using webshells. I was able to find that they specially have used two webshells in past campagins and did a search for them. We are able to see what folder they are in my looking at the 1 event found in the log. Ans: C:\Windows\Temp\
+
+<img width="949" height="442" alt="TF1" src="https://github.com/user-attachments/assets/130403b5-9619-4597-8aee-0050cc0c04ae" />
+
+<img width="955" height="392" alt="image" src="https://github.com/user-attachments/assets/bb680b10-0ce1-4ab8-ac94-da80a71a86f4" />
+
 
 ### Findings
 
 Document how the attacker enumerated the environment.
 
-### MITRE ATT&CK
-
-* T1033 – System Owner Discovery
-* T1082 – System Information Discovery
-* T1016 – Network Discovery
-
 ---
 
 ## Task 5: Defense Evasion
 
-### Evidence
+Volt Typhoon utilizes advanced defense evasion techniques to significantly reduce the risk of detection. These methods encompass regular file purging, eliminating logs, and conducting thorough reconnaissance of their operational environment.
 
-Identify mechanisms used to maintain access.
+### Questions asked:
 
-Examples:
+1. In an attempt to begin covering their tracks, the attackers remove evidence of the compromise. They first start by wiping RDP records. What PowerShell cmdlet does the attacker use to remove the “Most Recently Used” record?
+2.The APT continues to cover their tracks by renaming and changing the extension of the previously created archive. What is the file name (with extension) created by the attackers?
+3. Under what regedit path does the attacker check for evidence of a virtualized environment? 
 
-* Scheduled Tasks
-* Registry Run Keys
-* Services
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Walkthrough
+
 
 ### Findings
 
