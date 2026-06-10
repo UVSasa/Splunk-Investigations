@@ -184,21 +184,28 @@ Volt Typhoon utilizes advanced defense evasion techniques to significantly reduc
 
 <img width="952" height="421" alt="EXT1" src="https://github.com/user-attachments/assets/9be2b5c7-a124-45f9-8bd5-ca0ff32188f9" />
 
+---
+3) I just used the keyword virtal to look for anything since dean's account was compromised and found 1 event. Ans: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control
+
+<img width="949" height="411" alt="Virtual1" src="https://github.com/user-attachments/assets/8926a8e6-d066-411b-86cd-d41239fe8d4d" />
+
 
 ### Findings
 
 Document persistence artifacts discovered.
 
-### MITRE ATT&CK
-
-* T1053 – Scheduled Task
-* T1547 – Registry Run Keys
-
 ---
 
 ## Task 6: Credential Access
 
-### Evidence
+Volt Typhoon often combs through target networks to uncover and extract credentials from a range of programs. Additionally, they are known to access hashed credentials directly from system memory.
+
+### Questions asked:
+
+1. Using reg query, Volt Typhoon hunts for opportunities to find useful credentials. What three pieces of software do they investigate? Answer Format: Alphabetical order separated by a comma and space.
+2. What is the full decoded command the attacker uses to download and run mimikatz?
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Walkthrough
 
 Identify activity indicating elevated privileges.
 
@@ -208,29 +215,26 @@ Identify activity indicating elevated privileges.
 * Token manipulation
 * Service abuse
 
-### MITRE ATT&CK
-
-* T1068 – Exploitation for Privilege Escalation
-* T1134 – Access Token Manipulation
-
 ---
 
 ## Task 7: Discovery & Lateral Movement
 
-### Evidence
+Volt Typhoon uses enumeration techniques to gather additional information about network architecture, logging mechanisms, successful logins, and software configurations, enhancing their understanding of the target environment for strategic purposes.
+
+The APT has been observed moving previously created web shells to different servers as part of their lateral movement strategy. This technique facilitates their ability to traverse through networks and maintain access across multiple systems.
+
+### Questions asked:
+
+1. The attacker uses wevtutil, a log retrieval tool, to enumerate Windows logs. What event IDs does the attacker search for? Answer Format: Increasing order separated by a space.
+2. Moving laterally to server-02, the attacker copies over the original web shell. What is the name of the new web shell that was created?
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### Walkthrough
 
 Investigate movement between hosts.
 
 ### Findings
-
-* Remote logins
-* SMB activity
-* PsExec usage
-* RDP sessions
-
-### MITRE ATT&CK
-
-* T1021 – Remote Services
 
 ---
 
