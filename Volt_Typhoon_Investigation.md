@@ -171,6 +171,18 @@ Volt Typhoon utilizes advanced defense evasion techniques to significantly reduc
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Walkthrough
+1) First thing I did was filter into the powershell logs with the time filter still set to all the events after the dean-admin account was compromised. I also used the keywords "RDP", "Most", "delete",  and "remove" to see if that will narrow down the searches. "Delete", "RDP", and "Most" didn't return anything, but remove returned 6 events which had the answer. Ans: Remove-ItemProperty
+
+<img width="952" height="196" alt="Remove1" src="https://github.com/user-attachments/assets/7295c4aa-9f7a-413e-955d-4b383e7c5819" />
+<img width="952" height="413" alt="Remove2" src="https://github.com/user-attachments/assets/647c8ed4-2636-47d9-b5a3-710e2801bf30" />
+
+---
+2) This question was more of a grind, I didn't have any keyword or anything I could think of that would help so again I set the time filter to see all the events after the dean-admin account was compromised and looked through them one by one. Luckily I didn't have to go too far, I eventually came upon this command that looked suspicous simply because I had been starting to get familiar more and more WMIC and how to read those commands through the course of this challenge. After researching this one as well I found it had the answer. Ans: cl64.gif
+
+<img width="950" height="233" alt="EXT2" src="https://github.com/user-attachments/assets/ac263560-7102-46ab-889f-652c3e044424" />
+
+
+<img width="952" height="421" alt="EXT1" src="https://github.com/user-attachments/assets/9be2b5c7-a124-45f9-8bd5-ca0ff32188f9" />
 
 
 ### Findings
