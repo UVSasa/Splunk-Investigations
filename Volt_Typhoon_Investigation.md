@@ -206,8 +206,7 @@ Volt Typhoon often combs through target networks to uncover and extract credenti
 2. What is the full decoded command the attacker uses to download and run mimikatz?
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Walkthrough
-
-Identify activity indicating elevated privileges.
+1)
 
 ### Findings
 
