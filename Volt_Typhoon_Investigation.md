@@ -253,8 +253,18 @@ The APT has been observed moving previously created web shells to different serv
 
 ### Walkthrough
 
-1) 
+1) This was one that could be found by searching up the keyword wevutil. It turned up a few results where you could see the answers.
 
+<img width="950" height="414" alt="WE1" src="https://github.com/user-attachments/assets/918f5e41-017e-4452-acde-13a98dd983c7" />
+
+---
+2) From task 4 you have to remember that a webshell was placed in the temp directory. By going through the powershell events one by one I saw that the command used to do so was another encoded command was used to place the web with the name ntuser.ini. Right after that the certutil command was used to decode it and change its name to iisstart.aspx, so by searching for iisstart.aspx you could've found the answer. The logic could've also been just remembering from the mitre page that Volt Typhoon uses two types of webshells, and again by searching you would have found.
+
+
+<img width="955" height="332" alt="Copy1" src="https://github.com/user-attachments/assets/111a8225-b0fb-48ea-a311-4ac423eff4af" />
+
+
+ 
 ### Findings
 
 ---
