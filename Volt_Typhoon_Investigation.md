@@ -206,7 +206,29 @@ Volt Typhoon often combs through target networks to uncover and extract credenti
 2. What is the full decoded command the attacker uses to download and run mimikatz?
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Walkthrough
-1)
+1) This was another one that could be found by doing some research on the APT in Mitre website. Just by scrolling through and learning about some of their common TTP's I was able to find the potential answers.
+
+<img width="956" height="441" alt="CR1" src="https://github.com/user-attachments/assets/391a3770-6d0a-4f67-a06e-057b6d10603f" />
+<img width="958" height="442" alt="CR2" src="https://github.com/user-attachments/assets/689b1e6b-16ff-48a3-a717-34e65884dcce" />
+
+---
+
+2) To find the full command I ied to filter by key words to no avail then simply filterd the powershell logs and started searching them one by one. After scrolling through 6 pages of events, I eventually came upon this long encoded command and knew it was something. I copied it into cyberchef to decode it and was able to see the command that used to download mimikatz.
+
+
+<img width="953" height="413" alt="Mi1" src="https://github.com/user-attachments/assets/bbd6deed-dab5-47a4-9e15-7f6af94dc9c7" />
+
+<img width="955" height="295" alt="Mi2" src="https://github.com/user-attachments/assets/8696fb21-1b9c-4f39-8b5e-ced08b89a557" />
+<img width="952" height="394" alt="Mi4" src="https://github.com/user-attachments/assets/cded4ee2-9554-4814-8136-e1d67d836d4d" />
+<img width="956" height="258" alt="Mi5" src="https://github.com/user-attachments/assets/6954192e-ea7c-4a03-b112-0eddb1afea58" />
+
+
+
+
+
+
+
+   
 
 ### Findings
 
@@ -231,7 +253,7 @@ The APT has been observed moving previously created web shells to different serv
 
 ### Walkthrough
 
-Investigate movement between hosts.
+1) 
 
 ### Findings
 
