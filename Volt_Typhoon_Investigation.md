@@ -1,5 +1,7 @@
 # Volt Typhoon Incident Investigation (Splunk)
 
+[Jump to Conclusion](#Conclusion) Click here to jump to the summary of the lab, what I learned etc. 
+
 ## Overview
 
 This project simulates a Security Operations Center (SOC) investigation into activity associated with the Volt Typhoon threat actor. Using log sources collected over a two-week period, the objective was to identify the attack timeline, analyze attacker behavior, map activity to the MITRE ATT&CK framework, and determine the scope of compromise.
