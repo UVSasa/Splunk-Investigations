@@ -1,6 +1,7 @@
 # Volt Typhoon Incident Investigation (Splunk)
 
-[Jump to Conclusion](#Conclusion) Click here to jump to the summary of the lab, what I learned etc. 
+📌 [Skip to the Summary, Key Takeaways, and Lessons Learned](#Conclusion) 
+
 
 ## Overview
 
