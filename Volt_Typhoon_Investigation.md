@@ -255,13 +255,6 @@ Answer Format: Increasing order separated by a space.
 <img width="956" height="414" alt="Finance1" src="https://github.com/user-attachments/assets/717906fa-4cd2-415d-b1ba-73b67eb7802e" />
 
 
-
-### Findings
-
-* Suspicious domains
-* Beaconing behavior
-* Outbound connections
-
 ---
 
 ## Task 9: C2 & Cleanup
@@ -279,14 +272,18 @@ Answer Format: IP Port
 
 ### Walkthrough
 
-1) For this one you had to search for the keyword netsh
+1) For this one you had to search for the keyword netsh in the WMIC logs
 <img width="950" height="416" alt="Netsh2" src="https://github.com/user-attachments/assets/668cb65b-6f64-4fef-a2a5-26e0db2619d9" />
 
 
 2) For this I filtered the powershell logs by decending time since deleteing logs is a clean up action. After scrolling through a few logs I found the answer.
 <img width="959" height="407" alt="Clean1" src="https://github.com/user-attachments/assets/f4c5e6d9-28c5-45df-a554-c9b9b378a001" />
 
-
+### Findings/ Lessons Learned
+WMIC Research
+- WMIC (Windows Management Instrumentation) is a Windows tool used to query, manage, and interact with system components from the command-line
+- This is important for cybersecurity because because it is built into Windows, but can be used for both legitimate and malicious activity like Remote code execution
+Lateral movement, System discovery and Process creation on remote hosts.
 
 ---
 
