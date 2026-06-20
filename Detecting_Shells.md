@@ -11,7 +11,7 @@ As part of this lab, I am also studying the Cyber Kill Chain to better understan
 
 **The Cyber Kill Chain consists of seven phases:**
 
-1. **Reconnaissance** – Gathering information about the target. In this phase of my lab as the "attacker" I will be using kali/metaspolit to enumerate the target machine for open ports, services, known devices, vulnerabilities, firewall enumeration, and other things to understand what that behavior looks like in splunk.
+1. **Reconnaissance** – Gathering information about the target. In this phase of my lab as the "attacker" I will be using kali linux/metaspolit to enumerate the target machine for open ports, services, known devices, vulnerabilities, firewall enumeration, and other things to understand what that behavior looks like in splunk.
 2. **Weaponization** – Preparing tools, malware, or exploits for the attack. Here I will be using metaspolit to craft a "malicious payload" in the form of a reverse shell/bind shell using msfvenom in metasploit.
 3. **Delivery** – Transmitting the malicious payload to the target. Using the assumption that me as the "atttacker" has already made it onto the network I will deliver the payload via ....
 4. **Exploitation** – Triggering a vulnerability or executing malicious code.
