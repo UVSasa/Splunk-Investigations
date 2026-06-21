@@ -25,4 +25,169 @@ Understanding these stages helps provide context for the activities performed th
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## Attack Timeline
+
+## Stage 1: Reconnaissance
+
+**Attacker Activity**
+- Commands executed
+- Screenshots
+
+**Splunk Analysis**
+- Relevant logs
+- SPL queries
+- Detection opportunities
+
+**Framework Mapping**
+- Cyber Kill Chain: Reconnaissance
+- MITRE ATT&CK: Discovery techniques
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Stage 2: Weaponization
+
+**Attacker Activity**
+- Payload creation
+- Metasploit payload configuration
+- Reverse shell generation
+
+**Splunk Analysis**
+- What visibility exists
+- Detection limitations
+
+**MITRE ATT&CK Mapping**
+
+**Other Key Takeaways**
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Stage 3: Delivery
+
+**Attacker Activity**
+- Delivering payload to the target
+- File transfer or exploit delivery
+
+**Splunk Analysis**
+- Process creation events
+- File creation activity
+- Network activity
+
+**MITRE ATT&CK Mapping**
+- 
+**Other Key Takeaways**
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## Stage 4: Exploitation
+
+**Attacker Activity**
+- Exploiting the vulnerability
+- Code execution
+- Initial shell access
+
+**Splunk Analysis**
+- Event IDs observed
+- Process tree analysis
+- SPL searches
+
+**MITRE ATT&CK Mapping**
+
+**Other Key Takeaways**
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## Stage 5: Installation
+
+**Attacker Activity**
+- Create attacker account
+- Add account to Administrators
+- Scheduled task creation
+- Service creation
+- Registry persistence
+
+**Splunk Analysis**
+- User account creation events
+- Group membership changes
+- Scheduled task logs
+- Service installation logs
+
+**MITRE ATT&CK Mapping**
+
+**Other Key Takeaways**
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Stage 6: Command and Control (C2)
+
+**Attacker Activity**
+- Reverse shell
+- Bind shell
+- Meterpreter session
+
+**Splunk Analysis**
+- Network connection events
+- Parent-child process relationships
+- Listening ports
+- Outbound connections
+
+**MITRE ATT&CK Mapping**
+
+**Other Key Takeaways**
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## Stage 7: Actions on Objectives
+
+**Attacker Activity**
+- Credential dumping
+- Sensitive file access
+- Privilege escalation
+- Lateral movement
+- Data collection
+
+**Splunk Analysis**
+- Relevant logs
+- Investigation workflow
+- SPL searches
+
+**MITRE ATT&CK Mapping**
+
+**Other Key Takeaways**
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Summary
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
