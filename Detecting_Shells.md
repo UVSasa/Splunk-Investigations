@@ -1,3 +1,7 @@
+# Detecting Shells in Splunk
+
+📌 [Skip to the Summary, Key Takeaways, and Lessons Learned](#Summary) 
+
 ## Overview
 
 This lab focuses on simulating the stages of a cyber attack within a controlled environment using Kali Linux, Metasploit, and other security tools. The objective is to emulate common attacker techniques, including persistence mechanisms and reverse/bind shell activity, while developing the ability to detect and investigate these behaviors in Splunk.
