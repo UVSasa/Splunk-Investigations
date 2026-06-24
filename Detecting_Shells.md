@@ -34,13 +34,27 @@ Understanding these stages helps provide context for the activities performed th
 ## Stage 1: Reconnaissance
 
 **Attacker Activity**
-- Commands executed
-- Screenshots
+
+In any environment an attackers first step is to gather information about their target/targets. In this lab we are assuming an attacker has already made it into our network or just has access to a network that multiple devices are connected to, for example like free hotel, airport, or cafe wifi. Here as the "attacker" in my kali vm I ran many enumeration commands using nmap to see what hosts I could discover and what services they have running.
+
+- **Commands executed**
+    - sudo nmap -PR -sn 192.168.1.0/24 (arp scan for local subnets)
+    - sudo nmap -sS 192.168.1.10 (TCP SYN Scan (stealth) for port scanning)
+    - command sudo nmap -PP -sn 192.168.1.0/24 (timestamp)(for firewall enumeration)
+    - command sudo nmap -PM -sn 192.168.1.0/24 (address mask)(for firewall enumeration)
+  
+- **Screenshots**
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Splunk Analysis**
-- Relevant logs
-- SPL queries
-- Detection opportunities
+
+When thinking about the best way to detect enumeration attempts like port scanning or host discovery you'll find that detecting these allign more on the network side of things. This is because by nature they are connection attempts to the system that including things likr the source IP, destination port, and whether the attempt was allowed or blocked. The best way to capture this network activity is with network monitoring tools like firewalls. Therefore in order to get better at detecting this activity at it's basic level I just decided to ingest window's pfirewall logs into splunk to see if we can recognize any reconnaissance patterns and report on them.
+
+- **Relevant logs**
+
+- **SPL queries**
+- **Detection opportunities**
 
 **Framework Mapping**
 - Cyber Kill Chain: Reconnaissance
