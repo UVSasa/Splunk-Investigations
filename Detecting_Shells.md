@@ -53,6 +53,8 @@ When thinking about the best way to detect enumeration attempts like port scanni
 
 - **Relevant logs**
 
+
+
 - **SPL queries**
 - **Detection opportunities**
 
