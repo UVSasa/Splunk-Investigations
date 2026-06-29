@@ -49,15 +49,30 @@ In any environment an attackers first step is to gather information about their 
 
 **Splunk Analysis**
 
-When thinking about the best way to detect enumeration attempts like port scanning or host discovery you'll find that detecting these allign more on the network side of things. This is because by nature they are connection attempts to the system that including things likr the source IP, destination port, and whether the attempt was allowed or blocked. The best way to capture this network activity is with network monitoring tools like firewalls. Therefore in order to get better at detecting this activity at it's basic level I just decided to ingest window's pfirewall logs into splunk to see if we can recognize any reconnaissance patterns and report on them.
+When thinking about the best way to detect enumeration attempts like port scanning or host discovery you'll find that detecting these allign more on the network side of things. This is because by nature they are connection attempts to the system that including things like the source IP, destination port, and whether the attempt was allowed or blocked. The best way to capture this network activity is with network monitoring tools like firewalls. Therefore in order to get better at detecting this activity at it's basic level I just decided to ingest window's pfirewall logs into splunk to see if we can recognize any reconnaissance patterns and report on them.
+
+This was a learning point for me because I had to learn the hard way that the basic PFireWall logs in windows were not specific enough to reliably detect Nmap scans on their own. Rather than forcing detections that produced inconsistent results, I shifted my focus to the firewall's strengths—monitoring allowed and blocked network connections, identifying unusual connection patterns, tracking dropped traffic, and identifying potentially suspicious network activity. To accurately detect scanning tools like snort or zeek would be leagues better.
 
 - **Relevant logs**
 
-
-
-- **SPL queries**
 - **Detection opportunities**
 
+Here is the dashboard I built. While it didn't reliably give insight on potential scanning it can give insight to the network traffic in an individual's or organization's network. 
+
+---
+- **SPL queries**
+
+Here are a few or the SPL queries in the dashboard
+
+- index=main sourcetype=pfirewall | bucket _time span=1h | where action="DROP" | stats count as drop_count by src_ip _time | where drop_count > 5 | sort - drop_count
+        *can search what ip address in your network has a lot of dropped packets*
+
+- index=main sourcetype=pfirewall | timechart span=12h count by action
+        *Shows: Normal traffic vs blocked traffic Spikes (scans, attacks, bursts)
+
+- index=main sourcetype=pfirewall | stats count by src_ip dst_ip | sort - count
+
+---
 **Framework Mapping**
 - Cyber Kill Chain: Reconnaissance
 - MITRE ATT&CK: Discovery techniques
