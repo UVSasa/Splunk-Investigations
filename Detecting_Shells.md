@@ -75,23 +75,21 @@ Here are a few or the SPL queries in the dashboard
 ---
 **Framework Mapping**
 - Cyber Kill Chain: Reconnaissance
-- MITRE ATT&CK: Discovery techniques
+- MITRE ATT&CK Mapping:
+    - The reconnaissance detections align with the Reconnaissance (TA0043) tactic and the Active Scanning (T1595) technique. The Splunk search identifies hosts attempting connections to multiple ports within a short time window, which is behavior commonly associated with network reconnaissance and service discovery.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Stage 2: Weaponization
 
 **Attacker Activity**
-- Payload creation
-- Metasploit payload configuration
-- Reverse shell generation
+
+
+
 
 **Splunk Analysis**
-- What visibility exists
-- Detection limitations
+During the Weaponization stage, no telemetry is generated because the attacker is preparing the malicious payload offline. In this lab, the payload is a reverse shell that will be delivered in the next stage. The focus moving forward is to detect the execution of the payload, the establishment of the reverse shell connection, and the attacker activity that follows using Splunk and Sysmon logs.
 
 **MITRE ATT&CK Mapping**
-
-**Other Key Takeaways**
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Stage 3: Delivery
