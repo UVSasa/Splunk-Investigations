@@ -76,7 +76,7 @@ Here are a few or the SPL queries in the dashboard
 **Framework Mapping**
 - Cyber Kill Chain: Reconnaissance
 - MITRE ATT&CK Mapping:
-    - The reconnaissance detections align with the Reconnaissance (TA0043) tactic and the Active Scanning (T1595) technique. The Splunk search identifies hosts attempting connections to multiple ports within a short time window, which is behavior commonly associated with network reconnaissance and service discovery.
+    - The scanning techniques used to generate telemetry align with the Reconnaissance (TA0043) tactic and the Active Scanning (T1595) technique. The Splunk search identifies noisy hosts, common connections, traffic spikes, ips with a high number of dropped packets, and hosts attempting a high number of connections within a short time window, which is behavior commonly associated with network reconnaissance and service discovery.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Stage 2: Weaponization
