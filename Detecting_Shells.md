@@ -46,10 +46,6 @@ In any environment an attackers first step is to gather information about their 
 - **Screenshots**
 
 
-<img width="2564" height="1450" alt="image" src="https://github.com/user-attachments/assets/7e09c62b-da8b-4e60-98cb-db8f035b16fb" />
-
-
-<img width="2542" height="1656" alt="image" src="https://github.com/user-attachments/assets/aa999227-fcaa-414f-82e7-11ec117bd55e" />
 
 
 
