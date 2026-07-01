@@ -59,18 +59,31 @@ This was a learning point for me because I had to learn the hard way that the ba
 
 Here is the dashboard I built. While it didn't reliably give insight on potential scanning it can give insight to the network traffic in an individual's or organization's network. 
 
+
+<img width="631" height="341" alt="DR1" src="https://github.com/user-attachments/assets/fdb83cad-0966-4b1a-b167-1db33972e2f6" />
+
+
+
 ---
 - **SPL queries**
 
 Here are a few or the SPL queries in the dashboard
 
-- index=main sourcetype=pfirewall | bucket _time span=1h | where action="DROP" | stats count as drop_count by src_ip _time | where drop_count > 5 | sort - drop_count
-        *can search what ip address in your network has a lot of dropped packets*
+- index=main sourcetype=pfirewall | bucket _time span=1h | stats count(eval(action="DROP")) as drop_count by src_ip _time | where drop_count > 20 | sort - drop_count
 
-- index=main sourcetype=pfirewall | timechart span=12h count by action
-        *Shows: Normal traffic vs blocked traffic Spikes (scans, attacks, bursts)
+   (identifies source IP addresses that generated more than 20 dropped firewall events within a one-hour period, helping detect potentially suspicious or malicious network activity such as port scanning or repeated connection attempts)
 
-- index=main sourcetype=pfirewall | stats count by src_ip dst_ip | sort - count
+- index=* sourcetype= "Pfirewall" action="DROP" | timechart span=1h count
+
+     (displays the number of dropped firewall events over time, can be valuable in seeing spikes of dropped packet)
+
+- index=main sourcetype=pfirewall | stats count by dst_ip | sort - count | head 10
+
+  (displays the top 10 most frequently targeted destination IPs)
+
+- index=* sourcetype= "Pfirewall" action="DROP" | stats count
+
+     (overall number of blocked network connections)
 
 ---
 **Framework Mapping**
