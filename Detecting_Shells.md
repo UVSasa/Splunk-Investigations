@@ -104,6 +104,7 @@ Here are a few or the SPL queries in the dashboard
 
 **Attacker Activity**
 
+The attacker during this phase after enumerating their target/s, will craft their payload that will exploit the weakness or vulnerability in the system.
 
 
 
