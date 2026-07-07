@@ -120,7 +120,7 @@ During the Weaponization stage, no telemetry is generated because the attacker i
 **Framework Mapping**
 - Cyber Kill Chain: Reconnaissance
 - MITRE ATT&CK Mapping:
-    - None. The Weaponization stage occurs on the attacker's system while preparing the malicious payload and does not involve activity within the target environment that is represented in the ATT&CK framework.
+   - From the attacker's pov the phase demonstrates understanding of how adversaries tailor payloads to a target rather than using generic tooling. This is a core TTP mapped to MITRE ATT&CK T1587.001 (Develop Capabilities: Malware)
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Stage 3: Delivery
 
