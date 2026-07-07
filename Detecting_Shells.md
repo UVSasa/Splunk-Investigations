@@ -104,7 +104,12 @@ Here are a few or the SPL queries in the dashboard
 
 **Attacker Activity**
 
-The attacker during this phase after enumerating their target/s, will craft their payload that will exploit the weakness or vulnerability in the system.
+The attacker during this phase after enumerating their target/s, will craft their payload that will exploit the weakness or vulnerability in the system. Here as the "attacker" I used metaspolit or more specifically MSFvemon to craft my payload. 
+
+1) First I selected a reverse shell payload appropriate to the target OS/architecture of the "victim" machine ( windows/x64/meterpreter/reverse_tcp).
+2) In the payload I set the LHOST/LPORT to connect back to my kali machine. Then I output the payload as an executeable file format matching the target platform (in this case .exe), representing how an attacker packages code for a specific victim environment.
+3) I then named the file in a way to create a believable reason for the "victim" to click it and gave it a double file extension(.pdf.exe). This is because in real life attacker often rely on social engineering—manipulating people into opening a file or clicking a link. Also attackers often use double file extensions to trick users into believing a file is safe when it is actually executable.
+4) I also noted (without executing) the concept of encoding/obfuscaton options MSFvenom offers, and why real-world attackers use them to reduce static signature detection.
 
 
 
