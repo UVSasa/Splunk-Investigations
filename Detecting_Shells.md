@@ -118,24 +118,25 @@ The attacker during this phase after enumerating their target/s, will craft thei
 During the Weaponization stage, no telemetry is generated because the attacker is preparing the malicious payload offline. In this lab, the payload is a reverse shell that will be delivered in the next stage. The focus moving forward is to detect the execution of the payload, the establishment of the reverse shell connection, and the attacker activity that follows using Splunk and Sysmon logs.
 
 **Framework Mapping**
-- Cyber Kill Chain: Reconnaissance
+- Cyber Kill Chain: Weaponization
 - MITRE ATT&CK Mapping:
    - From the attacker's pov the phase demonstrates understanding of how adversaries tailor payloads to a target rather than using generic tooling. This is a core TTP mapped to MITRE ATT&CK T1587.001 (Develop Capabilities: Malware)
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Stage 3: Delivery
 
 **Attacker Activity**
-- Delivering payload to the target
-- File transfer or exploit delivery
+1) Here as the attacker I stood up a simple HTTP server (python3 -m http.server) on the attacker VM in the directory containing the payload, representing an adversary-controlled staging/distribution point.
+2) From the target VM, initiated an outbound HTTP request (via browser or command-line tool like curl/certutil, depending on OS) to pull the file down - simulating a user or script fetching a malicious file, similiar phishing-link or waterhole delivery in the wild.
+3) Confirmed successful transfer by validating the file existed on the target with matching hash to the source payload
+4) Kept this entirely within an isolated, host-only lab network with no internet-facing exposure, since delivery in a real intrusion would typically ride over email, a compromised website, or USB - I used HTTP as a safe, observable stand-in for those vectors.
 
 **Splunk Analysis**
-- Process creation events
-- File creation activity
-- Network activity
+Here as the defenders our goal is to detect the delivery and initial execution of a disguised malicious attachment. In the context of this particualr lab what will probably be the most helpful will be Windows File Creation events (Sysmon Event ID 11) as well as other Sysmon Process Creation events (Event ID 1) and Windows Security Logs.
 
-**MITRE ATT&CK Mapping**
-- 
-**Other Key Takeaways**
+**Framework Mapping**
+- Cyber Kill Chain: Delivery
+- MITRE ATT&CK Mapping:
+    - This maps to MITRE ATT&CK T1105(Ingress Tool Transfer) and demonstrates understanding of how delivery infrastructure works even when the "lure" mechanism (phishing, watering hole) is simulated rather than literally repliicated.
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
