@@ -134,7 +134,13 @@ During the Weaponization stage, no telemetry is generated because the attacker i
 3) Confirmed successful transfer by validating the file existed on the target with matching hash to the source payload
 4) Kept this entirely within an isolated, host-only lab network with no internet-facing exposure, since delivery in a real intrusion would typically ride over email, a compromised website, or USB - I used HTTP as a safe, observable stand-in for those vectors.
 
+The first image is the python server, the second is the commad to download the payload from the server(simulating clicking a phishing link), and the third is showing the payload on the "victim" machine.
+
 <img width="1508" height="626" alt="image" src="https://github.com/user-attachments/assets/9f56f8a9-e22a-4f70-9a3b-c5ca9c885f3d" />
+
+<img width="865" height="227" alt="Delivery2" src="https://github.com/user-attachments/assets/0f67e9d4-9026-435e-8fe2-54bcc14a1fd9" />
+
+<img width="956" height="444" alt="Delivery1" src="https://github.com/user-attachments/assets/37652892-6bd2-4541-81e9-4bd9086e1c86" />
 
 
 ----------------------
