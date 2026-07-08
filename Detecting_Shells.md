@@ -163,14 +163,21 @@ Here as the defenders our goal is to detect the delivery and initial execution o
 ## Stage 4: Exploitation
 
 **Attacker Activity**
-- Exploiting the vulnerability
-- Code execution
-- Initial shell access
+Here we will assume a bit from the mind of the end user/victim. 
+1) After the victim downloaded the file Resume.pdf.exe, they executed it by double-clicking the attachment. Although the filename appeared to be a PDF document, it was actually an executable disguised through the use of a double file extension. This social engineering technique relies on Windows hiding known file extensions, causing the victim to believe they were opening a legitimate document.
+
+Once executed, Windows created a new process and loaded the executable into memory. This marks the beginning of the exploitation phase, where attacker-controlled code begins running on the target system.
+
 
 **Splunk Analysis**
-- Event IDs observed
-- Process tree analysis
-- SPL searches
+In my lab setup the primary indicator of exploitation is a Sysmon Event ID 1 (Process Creation) event showing the execution of the disguised executable so for coming up with ways to detect this behavior I focused on reviewing the following fields:
+
+Image – Executable that was launched.
+CommandLine – Arguments used to start the process.
+ParentImage – Process responsible for launching the executable.
+User – Account that executed the file.
+CurrentDirectory – Directory from which the process was started.
+Hashes – File hashes used for malware identification and threat intelligence.
 
 **MITRE ATT&CK Mapping**
 
