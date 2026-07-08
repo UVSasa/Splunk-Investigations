@@ -112,6 +112,10 @@ The attacker during this phase after enumerating their target/s, will craft thei
 4) I also noted (without executing) the concept of encoding/obfuscaton options MSFvenom offers, and why real-world attackers use them to reduce static signature detection.
 
 
+<img width="2542" height="664" alt="image" src="https://github.com/user-attachments/assets/eb2825d9-ff3a-4a0e-ba92-415242e834f9" />
+
+
+------------------
 
 **Splunk Analysis**
 
@@ -129,6 +133,12 @@ During the Weaponization stage, no telemetry is generated because the attacker i
 2) From the target VM, initiated an outbound HTTP request (via browser or command-line tool like curl/certutil, depending on OS) to pull the file down - simulating a user or script fetching a malicious file, similiar phishing-link or waterhole delivery in the wild.
 3) Confirmed successful transfer by validating the file existed on the target with matching hash to the source payload
 4) Kept this entirely within an isolated, host-only lab network with no internet-facing exposure, since delivery in a real intrusion would typically ride over email, a compromised website, or USB - I used HTTP as a safe, observable stand-in for those vectors.
+
+<img width="1508" height="626" alt="image" src="https://github.com/user-attachments/assets/9f56f8a9-e22a-4f70-9a3b-c5ca9c885f3d" />
+
+
+----------------------
+
 
 **Splunk Analysis**
 Here as the defenders our goal is to detect the delivery and initial execution of a disguised malicious attachment. In the context of this particualr lab what will probably be the most helpful will be Windows File Creation events (Sysmon Event ID 11) as well as other Sysmon Process Creation events (Event ID 1) and Windows Security Logs.
