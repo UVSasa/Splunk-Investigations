@@ -164,13 +164,25 @@ Here as the defenders our goal is to detect the delivery and initial execution o
 
 **Attacker Activity**
 Here we will assume a bit from the mind of the end user/victim. 
-1) After the victim downloaded the file Resume.pdf.exe, they executed it by double-clicking the attachment. Although the filename appeared to be a PDF document, it was actually an executable disguised through the use of a double file extension. This social engineering technique relies on Windows hiding known file extensions, causing the victim to believe they were opening a legitimate document.
 
-Once executed, Windows created a new process and loaded the executable into memory. This marks the beginning of the exploitation phase, where attacker-controlled code begins running on the target system.
+After the victim downloaded the file Resume.pdf.exe, they executed it by double-clicking the attachment. Although the filename appeared to be a PDF document, it was actually an executable disguised through the use of a double file extension. This social engineering technique relies on Windows hiding known file extensions, causing the victim to believe they were opening a legitimate document. This is where me as the "attacker" can begin to transition from attempting to access the target to establishing control over the system.
+
+After successfully exploiting the target, the attacker typically performs post-exploitation discovery to better understand the environment and determine their next steps. This may include gathering information about the compromised host, such as the operating system, user privileges, network configuration, running processes, and available resources. This information helps the attacker identify potential opportunities for persistence, lateral movement, or achieving their final objectives.
+
+The images below are just a few of the commands I ran once gaining the shell on the target. Some other ones were ipconfig,netstat, driverquery, netuser, etc.
+
+<img width="1038" height="354" alt="image" src="https://github.com/user-attachments/assets/22c45a3c-aa10-46f8-bc13-b1223931a8ca" />
 
 
+<img width="1672" height="792" alt="image" src="https://github.com/user-attachments/assets/3aea888d-4327-47e7-bcb2-6c060103c383" />
+
+
+<img width="1500" height="470" alt="image" src="https://github.com/user-attachments/assets/d8b48bf6-118f-4200-8b5c-48f630b4344a" />
+
+
+-----------------------
 **Splunk Analysis**
-In my lab setup the primary indicator of exploitation is a Sysmon Event ID 1 (Process Creation) event showing the execution of the disguised executable so for coming up with ways to detect this behavior I focused on reviewing the following fields:
+In my lab setup the primary indicator of exploitation is a Sysmon Event ID 1 (Process Creation) event showing the execution of the disguised executable, so for coming up with ways to detect this behavior I focused on reviewing the following fields:
 
 Image – Executable that was launched.
 CommandLine – Arguments used to start the process.
@@ -179,7 +191,7 @@ User – Account that executed the file.
 CurrentDirectory – Directory from which the process was started.
 Hashes – File hashes used for malware identification and threat intelligence.
 
-**MITRE ATT&CK Mapping**
+**Framework Mapping**
 
 **Other Key Takeaways**
 
@@ -190,19 +202,32 @@ Hashes – File hashes used for malware identification and threat intelligence.
 ## Stage 5: Installation
 
 **Attacker Activity**
-- Create attacker account
-- Add account to Administrators
-- Scheduled task creation
-- Service creation
-- Registry persistence
+During this phase, the following persistence techniques were simulated:
+
+   - Created a new local user account.
+   - Added the account to the local Administrators group.
+   - Configured registry Run keys to automatically execute a program during user logon.
+   - Verified that the persistence mechanisms remained active after reboot.
+
+<img width="1044" height="434" alt="image" src="https://github.com/user-attachments/assets/b45b1196-4a80-47d2-a04c-6c534230a5a8" />
+
+
+<img width="2230" height="252" alt="image" src="https://github.com/user-attachments/assets/20e04c4a-0f90-4537-abf6-bb598c9e158f" />
+
+
+
+
+-----------------------------
 
 **Splunk Analysis**
-- User account creation events
-- Group membership changes
-- Scheduled task logs
-- Service installation logs
+From a defender's perspective, the Installation stage focuses on identifying evidence that an attacker has established persistence to maintain access after the initial compromise. During this phase, we monitor for behaviors such as the creation of new user accounts, changes to registry autorun locations, scheduled tasks, or other persistence mechanisms. Detecting these activities early is critical because they indicate an attacker is preparing for long-term access, enabling defenders to contain the threat before additional objectives such as privilege escalation, lateral movement, or data exfiltration occur.
 
-**MITRE ATT&CK Mapping**
+
+- **Detection opportunities**
+
+- **SPL Queries**
+
+**Framework Mapping**
 
 **Other Key Takeaways**
 
@@ -212,17 +237,16 @@ Hashes – File hashes used for malware identification and threat intelligence.
 ## Stage 6: Command and Control (C2)
 
 **Attacker Activity**
-- Reverse shell
-- Bind shell
-- Meterpreter session
+The objective of the Command and Control phase is to establish and maintain communication with a compromised system after gaining initial access. This communication channel allows the attacker to remotely interact with the host, execute commands, gather additional information, and continue operations without requiring direct access to the machine.
+
+In this lab, a remote shell session was used to simulate a command and control channel between the attacker and compromised Windows system. Once established, the session allowed the attacker to interact with the host and perform post-exploitation activities.
+
+-------------------------
 
 **Splunk Analysis**
-- Network connection events
-- Parent-child process relationships
-- Listening ports
-- Outbound connections
+From a defender's perspective, the Command and Control phase focuses on identifying systems that have established unauthorized communication with an external host. During this phase, defenders monitor for unusual outbound connections, repeated beaconing patterns, and processes initiating unexpected network traffic. Detecting C2 activity is critical because it can reveal an active compromise, allowing security teams to isolate the affected system and disrupt the attacker's ability to remotely control the host before they can achieve their objectives.
 
-**MITRE ATT&CK Mapping**
+**Framework Mapping**
 
 **Other Key Takeaways**
 
@@ -233,18 +257,23 @@ Hashes – File hashes used for malware identification and threat intelligence.
 ## Stage 7: Actions on Objectives
 
 **Attacker Activity**
-- Credential dumping
-- Sensitive file access
-- Privilege escalation
-- Lateral movement
-- Data collection
+The objective of the Actions on Objectives phase is to achieve the ultimate goal of the attack after successfully compromising and maintaining access to the target system. Depending on the attacker's intent, this may involve locating and collecting sensitive information, transferring data to an external destination, disrupting system operations, deploying ransomware, or removing evidence to hinder forensic investigation. At this stage, the attacker seeks to maximize the value of the compromise before access is lost or the attack is detected.
+
+
+<img width="970" height="230" alt="image" src="https://github.com/user-attachments/assets/d5166d53-6e97-4134-b649-e8d968082de7" />
+
+<img width="1938" height="258" alt="image" src="https://github.com/user-attachments/assets/51695f9b-d237-4da5-891a-b77500c517db" />
+
+
+
+--------------------------
 
 **Splunk Analysis**
 - Relevant logs
 - Investigation workflow
 - SPL searches
 
-**MITRE ATT&CK Mapping**
+**Framework Mapping**
 
 **Other Key Takeaways**
 
