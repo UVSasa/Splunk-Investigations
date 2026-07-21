@@ -171,13 +171,16 @@ After successfully exploiting the target, the attacker typically performs post-e
 
 The images below are just a few of the commands I ran once gaining the shell on the target. Some other ones were ipconfig,netstat, driverquery, netuser, etc.
 
-<img width="1038" height="354" alt="image" src="https://github.com/user-attachments/assets/22c45a3c-aa10-46f8-bc13-b1223931a8ca" />
+<img width="1038" height="354" alt="image" src="https://github.com/user-attachments/assets/0c941d04-9d4b-482a-a658-3a47af2ae3d7" />
 
 
-<img width="1672" height="792" alt="image" src="https://github.com/user-attachments/assets/3aea888d-4327-47e7-bcb2-6c060103c383" />
+<img width="1672" height="792" alt="image" src="https://github.com/user-attachments/assets/0d7c146a-7ff9-482a-af21-41652687ca69" />
 
 
-<img width="1500" height="470" alt="image" src="https://github.com/user-attachments/assets/d8b48bf6-118f-4200-8b5c-48f630b4344a" />
+<img width="1500" height="470" alt="image" src="https://github.com/user-attachments/assets/586e37ce-f235-4d80-94a9-313833f1879b" />
+
+
+
 
 
 -----------------------
@@ -209,10 +212,11 @@ During this phase, the following persistence techniques were simulated:
    - Configured registry Run keys to automatically execute a program during user logon.
    - Verified that the persistence mechanisms remained active after reboot.
 
-<img width="1044" height="434" alt="image" src="https://github.com/user-attachments/assets/b45b1196-4a80-47d2-a04c-6c534230a5a8" />
+<img width="1044" height="434" alt="image" src="https://github.com/user-attachments/assets/68252544-65a4-4c0b-b63b-bf504b2a97c3" />
 
 
-<img width="2230" height="252" alt="image" src="https://github.com/user-attachments/assets/20e04c4a-0f90-4537-abf6-bb598c9e158f" />
+<img width="2230" height="252" alt="image" src="https://github.com/user-attachments/assets/c38338e7-40e8-4a36-8054-fa1ed6def838" />
+
 
 
 
@@ -259,10 +263,19 @@ From a defender's perspective, the Command and Control phase focuses on identify
 **Attacker Activity**
 The objective of the Actions on Objectives phase is to achieve the ultimate goal of the attack after successfully compromising and maintaining access to the target system. Depending on the attacker's intent, this may involve locating and collecting sensitive information, transferring data to an external destination, disrupting system operations, deploying ransomware, or removing evidence to hinder forensic investigation. At this stage, the attacker seeks to maximize the value of the compromise before access is lost or the attack is detected.
 
+<img width="1118" height="886" alt="image" src="https://github.com/user-attachments/assets/816069e2-fd56-4fa0-8298-c4b698b2ec52" />
 
-<img width="970" height="230" alt="image" src="https://github.com/user-attachments/assets/d5166d53-6e97-4134-b649-e8d968082de7" />
+<img width="1368" height="306" alt="image" src="https://github.com/user-attachments/assets/a4d4d758-7e41-4d3e-a0ca-118c78dc7ca0" />
 
-<img width="1938" height="258" alt="image" src="https://github.com/user-attachments/assets/51695f9b-d237-4da5-891a-b77500c517db" />
+<img width="1502" height="196" alt="image" src="https://github.com/user-attachments/assets/66ae0892-3d9c-4b93-af6b-5cba93826473" />
+
+<img width="880" height="114" alt="image" src="https://github.com/user-attachments/assets/0cfa953e-cc14-410c-a7f5-da04b801cb2e" />
+
+<img width="1008" height="114" alt="image" src="https://github.com/user-attachments/assets/9b85628f-4f9c-4f8c-89f4-d92355e3bdca" />
+
+
+
+
 
 
 
