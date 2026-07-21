@@ -138,9 +138,9 @@ The first image is the python server, the second is the commad to download the p
 
 <img width="1508" height="626" alt="image" src="https://github.com/user-attachments/assets/9f56f8a9-e22a-4f70-9a3b-c5ca9c885f3d" />
 
-<img width="865" height="227" alt="Delivery2" src="https://github.com/user-attachments/assets/0f67e9d4-9026-435e-8fe2-54bcc14a1fd9" />
+<img width="865" height="227" alt="Delivery2" src="https://github.com/user-attachments/assets/c0b3722b-ba32-41c0-b018-2f79a82c3287" />
 
-<img width="832" height="446" alt="Delivery3" src="https://github.com/user-attachments/assets/e0ef7f30-275e-4ce9-b8fa-4d47a4681e0e" />
+<img width="832" height="446" alt="Delivery3" src="https://github.com/user-attachments/assets/497c5f9e-4afe-4dfe-a802-0df7486f5f54" />
 
 <img width="956" height="444" alt="Delivery1" src="https://github.com/user-attachments/assets/37652892-6bd2-4541-81e9-4bd9086e1c86" />
 
