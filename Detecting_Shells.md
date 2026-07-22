@@ -158,6 +158,10 @@ The dashboard includes detections for:
 - Creation of executable and script files (.exe, .dll, .ps1, .bat, .vbs, .js) that may indicate payload delivery.
 
 
+- **SPL queries**
+
+Here are a few or the SPL queries in the dashboard
+
 
 
 **Framework Mapping**
