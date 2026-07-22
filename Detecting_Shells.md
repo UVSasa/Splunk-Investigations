@@ -149,7 +149,16 @@ The first image is the python server, the second is the commad to download the p
 
 
 **Splunk Analysis**
-Here as the defenders our goal is to detect the delivery and initial execution of a disguised malicious attachment. In the context of this particualr lab what will probably be the most helpful will be Windows File Creation events (Sysmon Event ID 11) as well as other Sysmon Process Creation events (Event ID 1) and Windows Security Logs.
+The objective was to identify indicators of initial access, malicious execution, file delivery, and outbound network communication by correlating Sysmon process creation, network connection, and file creation events. A custom detection dashboard was developed to provide real-time visibility into attacker activity using Sysmon Event IDs 1 (Process Creation), 3 (Network Connection), and 11 (File Creation). The dashboard focuses on identifying common attacker techniques associated with malware delivery and execution.
+
+The dashboard includes detections for:
+- Living-off-the-Land Binaries (LOLBins) such as certutil.exe, bitsadmin.exe, curl.exe, mshta.exe, regsvr32.exe, and rundll32.exe.
+- PowerShell execution, including encoded commands and suspicious command-line arguments.
+- Network connections to HTTP/HTTPS services, including internal Python web servers used to simulate malware hosting.
+- Creation of executable and script files (.exe, .dll, .ps1, .bat, .vbs, .js) that may indicate payload delivery.
+
+
+
 
 **Framework Mapping**
 - Cyber Kill Chain: Delivery
