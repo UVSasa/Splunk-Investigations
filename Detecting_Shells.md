@@ -211,6 +211,8 @@ The SPL searches and sysmon edits were designed to detect behaviors commonly obs
 
 <img width="952" height="452" alt="Exploit2" src="https://github.com/user-attachments/assets/820d2632-ca1f-43b1-bdd5-87cd6a7316a4" />
 
+<img width="782" height="346" alt="Exploit3" src="https://github.com/user-attachments/assets/edbeffa2-302e-4567-a1ef-d2796d5aff34" />
+
 
 
 **Framework Mapping**
