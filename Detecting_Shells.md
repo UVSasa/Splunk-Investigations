@@ -245,6 +245,10 @@ During this phase, the following persistence techniques were simulated:
 **Splunk Analysis**
 From a defender's perspective, the Installation stage focuses on identifying evidence that an attacker has established persistence to maintain access after the initial compromise. During this phase, we monitor for behaviors such as the creation of new user accounts, changes to registry autorun locations, scheduled tasks, or other persistence mechanisms. Detecting these activities early is critical because they indicate an attacker is preparing for long-term access, enabling defenders to contain the threat before additional objectives such as privilege escalation, lateral movement, or data exfiltration occur.
 
+The SPL searches were developed to identify:
+- Registry modifications to common persistence locations, including Run and RunOnce registry keys.
+- Creation and modification of registry values that could automatically execute programs during user logon.
+- Execution of administrative commands such as net user and net localgroup used to enumerate or modify local user accounts.
 
 - **Detection opportunities**
 
