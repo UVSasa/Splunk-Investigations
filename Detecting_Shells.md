@@ -149,14 +149,15 @@ The first image is the python server, the second is the commad to download the p
 
 
 **Splunk Analysis**
-The objective was to identify indicators of initial access, malicious execution, file delivery, and outbound network communication by correlating Sysmon process creation, network connection, and file creation events. A custom detection dashboard was developed to provide real-time visibility into attacker activity using Sysmon Event IDs 1 (Process Creation), 3 (Network Connection), and 11 (File Creation). The dashboard focuses on identifying common attacker techniques associated with malware delivery and execution.
+The objective was to identify indicators of initial access, malicious execution, file delivery, and outbound network communication by correlating Sysmon process creation, network connection, and file creation events. A custom detection dashboard was developed to provide real-time visibility into attacker activity using Sysmon Event IDs 1 (Process Creation), 3 (Network Connection), and 11 (File Creation).
 
-The dashboard includes detections for:
+The focus was on identifying common attacker techniques associated with malware delivery and execution like:
 - Living-off-the-Land Binaries (LOLBins) such as certutil.exe, bitsadmin.exe, curl.exe, mshta.exe, regsvr32.exe, and rundll32.exe.
 - PowerShell execution, including encoded commands and suspicious command-line arguments.
 - Network connections to HTTP/HTTPS services, including internal Python web servers used to simulate malware hosting.
 - Creation of executable and script files (.exe, .dll, .ps1, .bat, .vbs, .js) that may indicate payload delivery.
 
+**Detection opportunities**
 
 <img width="295" height="216" alt="Dashboard 4" src="https://github.com/user-attachments/assets/35aa0ba7-efef-47d3-9557-88dbc7694436" />
 
@@ -209,6 +210,8 @@ The SPL searches and sysmon edits were designed to detect behaviors commonly obs
 - Command Prompt and PowerShell activity used to execute reconnaissance and administrative commands.
 - The creation of temporary directories being used to store to be exfiltrated later
 
+**Detection opportunities**
+
 <img width="952" height="452" alt="Exploit2" src="https://github.com/user-attachments/assets/820d2632-ca1f-43b1-bdd5-87cd6a7316a4" />
 
 <img width="782" height="346" alt="Exploit3" src="https://github.com/user-attachments/assets/edbeffa2-302e-4567-a1ef-d2796d5aff34" />
@@ -252,9 +255,12 @@ The SPL searches were developed to identify:
 - Creation and modification of registry values that could automatically execute programs during user logon.
 - Execution of administrative commands such as net user and net localgroup used to enumerate or modify local user accounts.
 
-- **Detection opportunities**
+**Detection opportunities**
 
-- **SPL Queries**
+<img width="1917" height="880" alt="Screenshot 2026-07-23 084044" src="https://github.com/user-attachments/assets/dd392dfc-e9ce-49cb-8f89-048172a9c7ae" />
+
+
+**SPL Queries**
 
 **Framework Mapping**
 
