@@ -158,6 +158,10 @@ The dashboard includes detections for:
 - Creation of executable and script files (.exe, .dll, .ps1, .bat, .vbs, .js) that may indicate payload delivery.
 
 
+<img width="295" height="216" alt="Dashboard 4" src="https://github.com/user-attachments/assets/35aa0ba7-efef-47d3-9557-88dbc7694436" />
+
+
+
 - **SPL queries**
 
 Here are a few or the SPL queries in the dashboard
@@ -198,14 +202,16 @@ The images below are just a few of the commands I ran once gaining the shell on 
 
 -----------------------
 **Splunk Analysis**
-In my lab setup the primary indicator of exploitation is a Sysmon Event ID 1 (Process Creation) event showing the execution of the disguised executable, so for coming up with ways to detect this behavior I focused on reviewing the following fields:
+Rather than focusing on the initial exploit itself, some of the searches I ran were designed to detect behaviors commonly performed immediately after gaining access, such as system and user enumeration. 
 
-Image – Executable that was launched.
-CommandLine – Arguments used to start the process.
-ParentImage – Process responsible for launching the executable.
-User – Account that executed the file.
-CurrentDirectory – Directory from which the process was started.
-Hashes – File hashes used for malware identification and threat intelligence.
+The SPL searches and sysmon edits were designed to detect behaviors commonly observed immediately after an attacker gains access to a system, including:
+- Execution of Windows discovery commands such as whoami, hostname, systeminfo, ipconfig, tasklist, and netstat.
+- Command Prompt and PowerShell activity used to execute reconnaissance and administrative commands.
+- The creation of temporary directories being used to store to be exfiltrated later
+
+<img width="952" height="452" alt="Exploit2" src="https://github.com/user-attachments/assets/820d2632-ca1f-43b1-bdd5-87cd6a7316a4" />
+
+
 
 **Framework Mapping**
 
