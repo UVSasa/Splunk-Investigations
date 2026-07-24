@@ -313,14 +313,30 @@ The objective of the Actions on Objectives phase is to achieve the ultimate goal
 --------------------------
 
 **Splunk Analysis**
-- Relevant logs
-- Investigation workflow
-- SPL searches
+Splunk was used to analyze Sysmon telemetry to identify attacker activity related to data extraction and cleanup operations. The goal of this phase was to detect behaviors that commonly occur after an attacker has gained access and is attempting to collect information while minimizing evidence left behind.
+
+Sysmon provided endpoint visibility through process creation, file activity, and network telemetry, which was ingested into Splunk for investigation.
+
+
+The analysis focused on identifying:
+
+- File deletion activity used to remove attacker-created artifacts
+- Execution of cleanup commands through command-line utilities
+- Potential data staging locations commonly used before exfiltration
+- Network connections that could indicate potential data transfer
+
+
+**Detection opportunities**
+
+<img width="568" height="301" alt="Sysmon1" src="https://github.com/user-attachments/assets/ac5a8fae-ced7-4dab-92d0-825510490c04" />
+
+
+**SPL Queries**
 
 **Framework Mapping**
 
 **Other Key Takeaways**
-
+- Here I edited the sysmon config to detect files being delelted in common staging locations like the temp folder
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
