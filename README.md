@@ -16,17 +16,7 @@ The goal is to simulate how a SOC analyst would:
 > Detect → Investigate → Correlate → Conclude
 
 ---
-## 🧠 Skills Demonstrated
 
-- Splunk Search Processing Language (SPL)
-- Sysmon log analysis (Event IDs 1, 3, 10, 11, 22, etc.)
-- Process tree reconstruction
-- Network traffic investigation via logs
-- Endpoint detection and response (EDR-style thinking)
-- Threat hunting methodology
-- MITRE ATT&CK mapping (where applicable)
-
----
 ## 🔗 Quick Investigation Index
 
 Click below to jump directly into each investigation:
