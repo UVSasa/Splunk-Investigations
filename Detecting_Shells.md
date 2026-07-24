@@ -200,7 +200,7 @@ Here are a few or the SPL queries in the dashboard
 **Attacker Activity**
 Here we will assume a bit from the mind of the end user/victim. 
 
-After the victim downloaded the file Resume.pdf.exe, they executed it by double-clicking the attachment. Although the filename appeared to be a PDF document, it was actually an executable disguised through the use of a double file extension. This social engineering technique relies on Windows hiding known file extensions, causing the victim to believe they were opening a legitimate document. This is where me as the "attacker" can begin to transition from attempting to access the target to establishing control over the system.
+After the victim downloaded the file HolidayBonus2026.pdf.exe, they executed it by double-clicking the attachment. Although the filename appeared to be a PDF document, it was actually an executable disguised through the use of a double file extension. This social engineering technique relies on Windows hiding known file extensions, causing the victim to believe they were opening a legitimate document. This is where me as the "attacker" can begin to transition from attempting to access the target to establishing control over the system.
 
 After successfully exploiting the target, the attacker typically performs post-exploitation discovery to better understand the environment and determine their next steps. This may include gathering information about the compromised host, such as the operating system, user privileges, network configuration, running processes, and available resources. This information helps the attacker identify potential opportunities for persistence, lateral movement, or achieving their final objectives.
 
@@ -218,14 +218,17 @@ The images below are just a few of the commands I ran once gaining the shell on 
 
 -----------------------
 **Splunk Analysis**
-Rather than focusing on the initial exploit itself, some of the searches I ran were designed to detect behaviors commonly performed immediately after gaining access, such as system and user enumeration. 
 
-The SPL searches and sysmon edits were designed to detect behaviors commonly observed immediately after an attacker gains access to a system, including:
-- Execution of Windows discovery commands such as whoami, hostname, systeminfo, ipconfig, tasklist, and netstat.
-- Command Prompt and PowerShell activity used to execute reconnaissance and administrative commands.
-- The creation of temporary directories being used to store to be exfiltrated later
+When trying to detect exploitation, I decided to focus on detecting behaviors commonly performed immediately after gaining access, such as system and user enumeration. This is because after gaining a foothold on a target an attacker has to essentially restart the attack process by enumerating their surrounds to see what devices are connected, what services are running etc,. 
+
+-------
 
 **Detection opportunities**
+
+I used SPL searches and edited sysmon configurations to detect behaviors commonly observed immediately after an attacker gains access to a system, including:
+- Execution of Windows discovery commands such as whoami, hostname, systeminfo, ipconfig, tasklist, and netstat.
+- Command Prompt and PowerShell activity used to execute reconnaissance and administrative commands.
+- The creation of temporary directories and files being used to store data to be exfiltrated later.
 
 <img width="952" height="452" alt="Exploit2" src="https://github.com/user-attachments/assets/820d2632-ca1f-43b1-bdd5-87cd6a7316a4" />
 
