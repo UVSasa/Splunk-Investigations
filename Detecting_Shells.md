@@ -73,7 +73,7 @@ Here is the dashboard I built. While it didn't reliably give insight on potentia
 
 
 ---
-- **SPL queries**
+**SPL queries**
 
 Here are a few or the SPL queries in the dashboard
 
@@ -130,7 +130,7 @@ During the Weaponization stage, no telemetry is generated because the attacker i
 
 **Attacker Activity**
 1) Here as the attacker I stood up a simple HTTP server (python3 -m http.server) on the attacker VM in the directory containing the payload, representing an adversary-controlled staging/distribution point.
-2) From the target VM, initiated an outbound HTTP request (via browser or command-line tool like curl/certutil, depending on OS) to pull the file down - simulating a user or script fetching a malicious file, similiar phishing-link or waterhole delivery in the wild.
+2) From the target machine, initiated an outbound HTTP request (via browser or command-line tool like curl/certutil, depending on OS) to pull the file down - simulating a user or script fetching a malicious file, similiar phishing-link or waterhole delivery in the wild.
 3) Confirmed successful transfer by validating the file existed on the target with matching hash to the source payload
 4) Kept this entirely within an isolated, host-only lab network with no internet-facing exposure, since delivery in a real intrusion would typically ride over email, a compromised website, or USB - I used HTTP as a safe, observable stand-in for those vectors.
 
@@ -149,25 +149,42 @@ The first image is the python server, the second is the commad to download the p
 
 
 **Splunk Analysis**
-The objective was to identify indicators of initial access, malicious execution, file delivery, and outbound network communication by correlating Sysmon process creation, network connection, and file creation events. A custom detection dashboard was developed to provide real-time visibility into attacker activity using Sysmon Event IDs 1 (Process Creation), 3 (Network Connection), and 11 (File Creation).
 
-The focus was on identifying common attacker techniques associated with malware delivery and execution like:
-- Living-off-the-Land Binaries (LOLBins) such as certutil.exe, bitsadmin.exe, curl.exe, mshta.exe, regsvr32.exe, and rundll32.exe.
-- PowerShell execution, including encoded commands and suspicious command-line arguments.
-- Network connections to HTTP/HTTPS services, including internal Python web servers used to simulate malware hosting.
-- Creation of executable and script files (.exe, .dll, .ps1, .bat, .vbs, .js) that may indicate payload delivery.
+The objective was to detect indicators of initial access, malicious execution, file delivery, and outbound network communication by correlating Sysmon process creation, network connection, and file creation events. I decided to create a dashboard to provide real-time visibility into attacker activity using Sysmon Event IDs 1 (Process Creation), 3 (Network Connection), and 11 (File Creation).
+
+
+---------------------------
 
 **Detection opportunities**
 
+The focus was on identifying common attacker techniques associated with malware delivery and execution like:
+- How many Living-off-the-Land Binaries (LOLBins) such as certutil.exe, bitsadmin.exe, curl.exe, mshta.exe, regsvr32.exe, and rundll32.exe were executed in a day.
+- PowerShell execution, including encoded commands and suspicious command-line arguments.
+- Monitoring total network connections to dectect downloads to and from HTTP/HTTPS services, including internal Python web servers used to simulate malware hosting. This was also used to detect malicious ip addresses.
+- Monitoring what processes were most responsible for the creation of executable and script files (.exe, .dll, .ps1, .bat, .vbs, .js) that may indicate payload delivery. 
+
+
 <img width="295" height="216" alt="Dashboard 4" src="https://github.com/user-attachments/assets/35aa0ba7-efef-47d3-9557-88dbc7694436" />
 
+----
 
-
-- **SPL queries**
+**SPL queries**
 
 Here are a few or the SPL queries in the dashboard
 
+- index=main EventCode=3 | stats count by Image DestinationIp | sort -count
 
+   (This search provides a summary of all Sysmon network connection events (Event ID 3) and identifies which processes are making the most outbound network connections and to which destination IP addresses.)
+
+- index=main EventCode=11 (Image="*.exe" OR Image="*.dll" OR Image="*.ps1" OR Image="*.bat" OR Image="*.vbs" OR Image="*.js" OR Image="*.hta") | stats count by Image | sort - count
+
+   (Summarizes which processes are creating the most executable and script files. Helpful to identify potentially suspicious processes.)
+
+- index=main EventCode=1 (Image="*certutil.exe" OR Image="*bitsadmin.exe" OR Image="*mshta.exe" OR Image="*regsvr32.exe" OR Image="*rundll32.exe" OR Image="*curl.exe") | stats count by Image CommandLine
+
+  (Searches the main index for Sysmon Event ID 1 (Process Creation) events and filters the results to only show processes commonly abused by attackers for payload delivery, execution, or defense evasion)
+
+----
 
 **Framework Mapping**
 - Cyber Kill Chain: Delivery
@@ -196,8 +213,6 @@ The images below are just a few of the commands I ran once gaining the shell on 
 
 
 <img width="1500" height="470" alt="image" src="https://github.com/user-attachments/assets/586e37ce-f235-4d80-94a9-313833f1879b" />
-
-
 
 
 
