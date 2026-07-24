@@ -361,6 +361,25 @@ When searching splunk I focused on identifying:
 ## Summary
 
 
+# Lab Summary
+
+This project significantly strengthened both my offensive and defensive cybersecurity skills by allowing me to simulate a realistic attack while simultaneously building detections for each stage of the Cyber Kill Chain. Working from both the attacker and defender perspectives provided a deeper understanding of how adversary techniques generate observable telemetry and how those activities can be detected using a SIEM.
+
+### Offensive Security
+
+From an offensive security perspective, I became much more comfortable using Metasploit to gain and maintain access to a target system. Throughout the lab, I gained experience configuring payloads, establishing Meterpreter sessions, and interacting with compromised Windows hosts. I also explored common post-exploitation techniques, including creating registry run keys for persistence, transferring payloads to the victim, and attempting to exfiltrate files after obtaining a shell.
+
+One of the biggest learning experiences came from the challenges encountered after compromising the target. While gaining a shell is often portrayed as the end goal, I learned that post-exploitation introduces its own set of obstacles. Extracting files from the compromised system, working around Windows Defender protections, and troubleshooting file transfer methods such as SCP and Meterpreter downloads demonstrated that maintaining access and achieving objectives can be just as challenging as the initial compromise. These experiences reinforced the importance of understanding Windows internals, networking, and native operating system tools during offensive operations.
+
+### Defensive Security
+
+From a defensive perspective, this project greatly improved my ability to use Splunk for security monitoring and threat detection. I became more proficient at writing SPL searches, analyzing Sysmon telemetry, and transforming raw event data into meaningful visualizations through dashboards. Rather than relying on individual searches, I learned how to correlate multiple event types to provide better visibility into attacker behavior across different stages of the Cyber Kill Chain.
+
+Building these dashboards also strengthened my understanding of what information is most valuable to SOC analysts during an investigation. I learned how to organize data into actionable panels that highlight suspicious process execution, network connections, file creation events, persistence mechanisms, and cleanup activities, making investigations faster and more efficient.
+
+This lab also expanded my knowledge of the MITRE ATT&CK framework by connecting observed attacker behavior to specific techniques and tactics. Mapping detections to ATT&CK provided valuable context for understanding how individual events fit into a larger attack sequence. Additionally, I gained a greater appreciation for Living-off-the-Land Binaries (LOLBins) and how attackers abuse legitimate Windows utilities such as `certutil.exe`, `bitsadmin.exe`, `mshta.exe`, `regsvr32.exe`, `rundll32.exe`, and `curl.exe` to evade detection. Learning more about native Windows tools and their legitimate versus malicious use cases has improved my ability to recognize suspicious behavior while reducing false positives during investigations.
+
+Overall, this project reinforced the importance of viewing cybersecurity from both the attacker and defender perspectives. Simulating each phase of the attack while building detections for the corresponding activity provided practical experience that strengthened my technical skills, improved my investigative mindset, and deepened my understanding of how offensive techniques translate into detectable artifacts within a modern SIEM environment.
 
 
 
