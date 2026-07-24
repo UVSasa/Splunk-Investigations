@@ -266,14 +266,16 @@ During this phase, the following persistence techniques were simulated:
 -----------------------------
 
 **Splunk Analysis**
-From a defender's perspective, the Installation stage focuses on identifying evidence that an attacker has established persistence to maintain access after the initial compromise. During this phase, we monitor for behaviors such as the creation of new user accounts, changes to registry autorun locations, scheduled tasks, or other persistence mechanisms. Detecting these activities early is critical because they indicate an attacker is preparing for long-term access, enabling defenders to contain the threat before additional objectives such as privilege escalation, lateral movement, or data exfiltration occur.
 
-The SPL searches were developed to identify:
-- Registry modifications to common persistence locations, including Run and RunOnce registry keys.
-- Creation and modification of registry values that could automatically execute programs during user logon.
-- Execution of administrative commands such as net user and net localgroup used to enumerate or modify local user accounts.
+From a defender's perspective, I wanted to focus on identifying evidence that an attacker has established persistence to maintain access after the initial compromise. I monitored for behaviors such as the creation of new user accounts, changes to registry autorun locations, scheduled tasks, or other persistence mechanisms. Detecting these activities early is critical because they indicate an attacker is preparing for long-term access, enabling defenders to contain the threat before additional objectives such as privilege escalation, lateral movement, or data exfiltration occur.
+
 
 **Detection opportunities**
+
+The SPL searches were developed to identify:
+- Registry modifications to common persistence locations, including Run and RunOnce registry keys from the commandline using Reg.exe
+- Creation and modification of registry values that could automatically execute programs during user logon.
+- Execution of administrative commands such as net user and net localgroup used to enumerate or modify local user accounts.
 
 <img width="1917" height="880" alt="Screenshot 2026-07-23 084044" src="https://github.com/user-attachments/assets/dd392dfc-e9ce-49cb-8f89-048172a9c7ae" />
 
@@ -310,7 +312,8 @@ From a defender's perspective, the Command and Control phase focuses on identify
 ## Stage 7: Actions on Objectives
 
 **Attacker Activity**
-The objective of the Actions on Objectives phase is to achieve the ultimate goal of the attack after successfully compromising and maintaining access to the target system. Depending on the attacker's intent, this may involve locating and collecting sensitive information, transferring data to an external destination, disrupting system operations, deploying ransomware, or removing evidence to hinder forensic investigation. At this stage, the attacker seeks to maximize the value of the compromise before access is lost or the attack is detected.
+
+The objective of the Actions on Objectives phase is to achieve the ultimate goal of the attack after successfully compromising and maintaining access to the target system. Depending on the attacker's intent, this may involve locating and collecting sensitive information, transferring data to an external destination, disrupting system operations, deploying ransomware, or removing evidence to hinder forensic investigation. At this stage, the attacker seeks to maximize the value of the compromise before access is lost or the attack is detected. For my purposes, I just simulated extracting a file that I made called findings that had all results of all the enumeration commands I ran in them through a meterpreter session.
 
 <img width="1118" height="886" alt="image" src="https://github.com/user-attachments/assets/816069e2-fd56-4fa0-8298-c4b698b2ec52" />
 
@@ -324,27 +327,24 @@ The objective of the Actions on Objectives phase is to achieve the ultimate goal
 
 
 
-
-
-
-
 --------------------------
 
 **Splunk Analysis**
+
 Splunk was used to analyze Sysmon telemetry to identify attacker activity related to data extraction and cleanup operations. The goal of this phase was to detect behaviors that commonly occur after an attacker has gained access and is attempting to collect information while minimizing evidence left behind.
 
 Sysmon provided endpoint visibility through process creation, file activity, and network telemetry, which was ingested into Splunk for investigation.
 
+----
 
-The analysis focused on identifying:
+**Detection opportunities**
 
-- File deletion activity used to remove attacker-created artifacts
+When searching splunk I focused on identifying:
+
+- File deletion activity used to remove attacker-created artifacts.(I had to configure sysmon to log file deletions in certain directories)
 - Execution of cleanup commands through command-line utilities
 - Potential data staging locations commonly used before exfiltration
 - Network connections that could indicate potential data transfer
-
-
-**Detection opportunities**
 
 <img width="568" height="301" alt="Sysmon1" src="https://github.com/user-attachments/assets/ac5a8fae-ced7-4dab-92d0-825510490c04" />
 
@@ -354,7 +354,6 @@ The analysis focused on identifying:
 **Framework Mapping**
 
 **Other Key Takeaways**
-- Here I edited the sysmon config to detect files being delelted in common staging locations like the temp folder
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
