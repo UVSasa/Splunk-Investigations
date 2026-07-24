@@ -247,6 +247,7 @@ I used SPL searches and edited sysmon configurations to detect behaviors commonl
 ## Stage 5: Installation
 
 **Attacker Activity**
+
 During this phase, the following persistence techniques were simulated:
 
    - Created a new local user account.
