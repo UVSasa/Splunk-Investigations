@@ -219,7 +219,7 @@ The images below are just a few of the commands I ran once gaining the shell on 
 -----------------------
 **Splunk Analysis**
 
-When trying to detect exploitation, I decided to focus on detecting behaviors commonly performed immediately after gaining access, such as system and user enumeration. This is because after gaining a foothold on a target an attacker has to essentially restart the attack process by enumerating their surrounds to see what devices are connected, what services are running etc,. 
+When trying to detect exploitation, I decided to focus on detecting behaviors commonly performed immediately after gaining access, such as system and user enumeration. This is because after gaining a foothold on a target an attacker has to essentially restart the attack process by enumerating their surroundings to see what devices are connected, what services are running etc,. 
 
 -------
 
@@ -228,7 +228,7 @@ When trying to detect exploitation, I decided to focus on detecting behaviors co
 I used SPL searches and edited sysmon configurations to detect behaviors commonly observed immediately after an attacker gains access to a system, including:
 - Execution of Windows discovery commands such as whoami, hostname, systeminfo, ipconfig, tasklist, and netstat.
 - Command Prompt and PowerShell activity used to execute reconnaissance and administrative commands.
-- The creation of temporary directories and files being used to store data to be exfiltrated later.
+- The creation of temporary directories/files being used to store data to be exfiltrated later in common locations like the temp folder.
 
 <img width="952" height="452" alt="Exploit2" src="https://github.com/user-attachments/assets/820d2632-ca1f-43b1-bdd5-87cd6a7316a4" />
 
